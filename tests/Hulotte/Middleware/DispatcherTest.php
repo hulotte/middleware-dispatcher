@@ -4,6 +4,7 @@ namespace tests\Hulotte\Middleware;
 
 use Hulotte\Middleware\Dispatcher;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 
@@ -27,5 +28,19 @@ class DispatcherTest extends TestCase
         $request = $this->createMock(ServerRequestInterface::class);
 
         $dispatcher->handle($request);
+    }
+
+    /**
+     * @covers \Hulotte\Middleware\Dispatcher::handle
+     * @test
+     */
+    public function handleWithNoMiddleware()
+    {
+        $dispatcher = new Dispatcher([null]);
+        $request = $this->createMock(ServerRequestInterface::class);
+
+        $result = $dispatcher->handle($request);
+
+        $this->assertInstanceOf(ResponseInterface::class, $result);
     }
 }
