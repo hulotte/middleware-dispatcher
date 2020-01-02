@@ -2,6 +2,7 @@
 
 namespace Hulotte\Middleware;
 
+use GuzzleHttp\Psr7\Response;
 use Psr\Http\{
     Message\ResponseInterface,
     Message\ServerRequestInterface,
@@ -41,6 +42,10 @@ class Dispatcher implements RequestHandlerInterface
     {
         $middleware = $this->getMiddleware();
         $this->index++;
+
+        if ($middleware === null) {
+            return new Response();
+        }
 
         return $middleware->process($request, $this);
     }
