@@ -1,20 +1,19 @@
 <?php
 
-namespace Hulotte\Middleware;
+namespace Hulotte\Middlewares;
 
 use GuzzleHttp\Psr7\Response;
-use Psr\Http\{
-    Message\ResponseInterface,
+use Psr\Http\{Message\ResponseInterface,
     Message\ServerRequestInterface,
-    Server\RequestHandlerInterface
-};
+    Server\MiddlewareInterface,
+    Server\RequestHandlerInterface};
 
 /**
  * Class Dispatcher
  * @author Sébastien CLEMENT<s.clement@la-taniere.net>
- * @package Hulotte\Middleware
+ * @package Hulotte\Middlewares
  */
-class Dispatcher implements RequestHandlerInterface
+class MiddlewareDispatcher implements RequestHandlerInterface
 {
     /**
      * @var int
@@ -53,9 +52,9 @@ class Dispatcher implements RequestHandlerInterface
 
     /**
      * Get the current middleware
-     * @return mixed|null
+     * @return MiddlewareInterface|null
      */
-    private function getMiddleware()
+    private function getMiddleware(): ?MiddlewareInterface
     {
         if (isset($this->middlewares[$this->index])) {
             return $this->middlewares[$this->index];

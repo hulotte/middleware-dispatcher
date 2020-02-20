@@ -13,9 +13,9 @@ $ composer require hulotte/middleware-dispatcher
 ```
 
 ## How to use Hulotte Middleware Dispatcher ?
-First, instanciate the Dispatcher class with an array of middlewares.
+First, instanciate the MiddlewareDispatcher class with an array of middlewares.
 ```php
-$dispatcher = new \Hulotte\Middleware\Dispatcher([
+$dispatcher = new \Hulotte\Middlewares\MiddlewareDispatcher([
     new Middleware1(), 
     new Middleware2(),
 ]);
