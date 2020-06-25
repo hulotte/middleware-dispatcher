@@ -3,10 +3,12 @@
 namespace Hulotte\Middlewares;
 
 use GuzzleHttp\Psr7\Response;
-use Psr\Http\{Message\ResponseInterface,
+use Psr\Http\{
+    Message\ResponseInterface,
     Message\ServerRequestInterface,
     Server\MiddlewareInterface,
-    Server\RequestHandlerInterface};
+    Server\RequestHandlerInterface
+};
 
 /**
  * Class Dispatcher
@@ -18,12 +20,12 @@ class MiddlewareDispatcher implements RequestHandlerInterface
     /**
      * @var int
      */
-    private $index = 0;
+    private int $index;
 
     /**
      * @var array
      */
-    private $middlewares;
+    private array $middlewares;
 
     /**
      * Dispatcher constructor
@@ -32,6 +34,7 @@ class MiddlewareDispatcher implements RequestHandlerInterface
     public function __construct(array $middlewares)
     {
         $this->middlewares = $middlewares;
+        $this->index = 0;
     }
 
     /**
