@@ -18,23 +18,12 @@ use Psr\Http\{
 class MiddlewareDispatcher implements RequestHandlerInterface
 {
     /**
-     * @var int
-     */
-    private int $index;
-
-    /**
-     * @var array
-     */
-    private array $middlewares;
-
-    /**
      * Dispatcher constructor
      * @param array $middlewares
+     * @param int $index
      */
-    public function __construct(array $middlewares)
+    public function __construct(private array $middlewares, private int $index = 0)
     {
-        $this->middlewares = $middlewares;
-        $this->index = 0;
     }
 
     /**
